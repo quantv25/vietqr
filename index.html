@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VietQR Chuyển khoản</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>VietQR Chuyển khoản</h1>
+    <button id="settingsBtn">⚙️</button>
+  </header>
+
+  <main id="main">
+    <label>Chọn tài khoản:</label>
+    <select id="accountSelect"></select>
+
+    <label>Số tiền:</label>
+    <input type="number" id="amount" placeholder="Nhập số tiền" />
+
+    <label>Nội dung:</label>
+    <input type="text" id="message" placeholder="Nội dung chuyển khoản" />
+
+    <button id="generateBtn">Tạo mã QR</button>
+
+    <div id="qrContainer">
+      <canvas id="qrCode"></canvas>
+    </div>
+
+    <button id="shareBtn" style="display:none;">📤 Chia sẻ ảnh QR</button>
+  </main>
+
+  <section id="settings" style="display:none;">
+    <h2>Cài đặt tài khoản</h2>
+    <div class="account-settings">
+      <h3>Tài khoản 1</h3>
+      <input id="alias1" placeholder="Tên gợi nhớ" />
+      <input id="bank1" placeholder="Tên ngân hàng" />
+      <input id="name1" placeholder="Tên chủ tài khoản" />
+      <input id="stk1" placeholder="Số tài khoản" />
+    </div>
+    <div class="account-settings">
+      <h3>Tài khoản 2</h3>
+      <input id="alias2" placeholder="Tên gợi nhớ" />
+      <input id="bank2" placeholder="Tên ngân hàng" />
+      <input id="name2" placeholder="Tên chủ tài khoản" />
+      <input id="stk2" placeholder="Số tài khoản" />
+    </div>
+    <button id="saveSettings">Lưu cài đặt</button>
+    <button id="backBtn">← Quay lại</button>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
