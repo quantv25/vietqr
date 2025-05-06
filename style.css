@@ -23,21 +23,13 @@ input, select, button {
   width: 100%;
   max-width: 400px;
 }
-#qrContainer {
+#previewContainer {
   margin-top: 20px;
   text-align: center;
 }
 canvas {
-  width: 300px !important;
-  height: 300px !important;
-}
-#qrDetails {
-  margin-top: 10px;
-  background: white;
-  padding: 10px;
-  display: inline-block;
-  text-align: left;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 .account-settings {
   background: #fff;

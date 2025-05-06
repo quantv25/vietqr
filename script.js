@@ -7,8 +7,7 @@ const saveSettings = document.getElementById("saveSettings");
 const accountSelect = document.getElementById("accountSelect");
 const generateBtn = document.getElementById("generateBtn");
 const shareBtn = document.getElementById("shareBtn");
-const qrCanvas = document.getElementById("qrCode");
-const qrDetails = document.getElementById("qrDetails");
+const qrCanvas = document.getElementById("qrCanvas");
 
 function loadSettings() {
   accountSelect.innerHTML = "";
@@ -54,26 +53,31 @@ saveSettings.onclick = () => {
 };
 
 generateBtn.onclick = () => {
+  const ctx = qrCanvas.getContext("2d");
   const selected = JSON.parse(accountSelect.value || "{}");
   const amount = document.getElementById("amount").value;
   const message = document.getElementById("message").value;
 
   if (!selected.stk || !selected.bank || !selected.name) return alert("Chưa chọn tài khoản!");
-  const data = `https://img.vietqr.io/image/${selected.bank}-${selected.stk}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(message)}&accountName=${encodeURIComponent(selected.name)}`;
 
+  const qrUrl = `https://img.vietqr.io/image/${selected.bank}-${selected.stk}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(message)}&accountName=${encodeURIComponent(selected.name)}`;
   const qr = new QRious({
-    element: qrCanvas,
-    value: data,
-    size: 300
+    value: qrUrl,
+    size: 200
   });
 
-  qrDetails.innerHTML = `
-    <strong>Ngân hàng:</strong> ${selected.bank}<br>
-    <strong>Chủ tài khoản:</strong> ${selected.name}<br>
-    <strong>Số tài khoản:</strong> ${selected.stk}<br>
-    <strong>Số tiền:</strong> ${amount} VND<br>
-    <strong>Nội dung:</strong> ${message}
-  `;
+  ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, qrCanvas.width, qrCanvas.height);
+  ctx.drawImage(qr.image, 100, 20, 200, 200);
+
+  ctx.fillStyle = "black";
+  ctx.font = "16px Arial";
+  ctx.fillText(`Ngân hàng: ${selected.bank}`, 20, 250);
+  ctx.fillText(`Chủ TK: ${selected.name}`, 20, 280);
+  ctx.fillText(`Số TK: ${selected.stk}`, 20, 310);
+  ctx.fillText(`Số tiền: ${amount} VND`, 20, 340);
+  ctx.fillText(`Nội dung: ${message}`, 20, 370);
 
   shareBtn.style.display = "block";
 };
