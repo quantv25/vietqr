@@ -8,6 +8,7 @@ const accountSelect = document.getElementById("accountSelect");
 const generateBtn = document.getElementById("generateBtn");
 const shareBtn = document.getElementById("shareBtn");
 const qrCanvas = document.getElementById("qrCode");
+const qrDetails = document.getElementById("qrDetails");
 
 function loadSettings() {
   accountSelect.innerHTML = "";
@@ -65,10 +66,19 @@ generateBtn.onclick = () => {
     value: data,
     size: 300
   });
+
+  qrDetails.innerHTML = `
+    <strong>Ngân hàng:</strong> ${selected.bank}<br>
+    <strong>Chủ tài khoản:</strong> ${selected.name}<br>
+    <strong>Số tài khoản:</strong> ${selected.stk}<br>
+    <strong>Số tiền:</strong> ${amount} VND<br>
+    <strong>Nội dung:</strong> ${message}
+  `;
+
   shareBtn.style.display = "block";
 };
 
-shareBtn.onclick = async () => {
+shareBtn.onclick = () => {
   qrCanvas.toBlob(blob => {
     const file = new File([blob], "vietqr.png", { type: "image/png" });
     if (navigator.share) {

@@ -31,6 +31,14 @@ canvas {
   width: 300px !important;
   height: 300px !important;
 }
+#qrDetails {
+  margin-top: 10px;
+  background: white;
+  padding: 10px;
+  display: inline-block;
+  text-align: left;
+  border-radius: 8px;
+}
 .account-settings {
   background: #fff;
   margin: 10px 0;
