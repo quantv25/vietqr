@@ -27,7 +27,7 @@ input, select, button {
   margin-top: 20px;
   text-align: center;
 }
-canvas {
+img {
   border: 1px solid #ccc;
   border-radius: 10px;
 }
