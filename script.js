@@ -67,13 +67,7 @@ generateBtn.onclick = async () => {
 };
 
 shareBtn.onclick = async () => {
-  const selected = JSON.parse(accountSelect.value || "{}");
-  const amount = document.getElementById("amount").value;
-  const message = document.getElementById("message").value;
-
-  const qrUrl = `https://img.vietqr.io/image/${selected.bank}-${selected.stk}-compact2.jpg?amount=${amount}&addInfo=${encodeURIComponent(message)}&accountName=${encodeURIComponent(selected.name)}`;
-
-  const response = await fetch(qrUrl);
+  const response = await fetch(finalImage.src);
   const blob = await response.blob();
   const file = new File([blob], "vietqr.jpg", { type: "image/jpeg" });
 
